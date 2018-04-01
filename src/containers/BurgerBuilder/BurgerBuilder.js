@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import Aux from  '../../hoc/Auxw';
+import Aux from  '../../hoc/Auxw/Auxw';
 import Burger from '../../components/Burger/Burger';
 import BuildControls from '../../components/Burger/BuildControls/BuildControls';
 import Modal from '../../components/UI/Modal/Modal';
@@ -43,9 +43,7 @@ class BurgerBuilder extends Component {
   addIngredientHandler = (type) => {
     const oldCount = this.state.ingredients[type];
     const updatedCount = oldCount +1;
-    const updatedIngredients = {
-      ...this.state.ingredients
-    };
+    const updatedIngredients = {...this.state.ingredients};
     updatedIngredients[type] = updatedCount;
     const priceAddition = INGREDIENT_PRICES[type];
     const oldPrice = this.state.totalPrice;
@@ -64,13 +62,9 @@ class BurgerBuilder extends Component {
 
   removeIngredientHandler = (type) => {
     const oldCount = this.state.ingredients[type];
-    if(oldCount <= 0){
-      return;
-    }
+    if(oldCount <= 0){return;}
     const updatedCount = oldCount -1;
-    const updatedIngredients = {
-      ...this.state.ingredients
-    };
+    const updatedIngredients = {...this.state.ingredients};
     updatedIngredients[type] = updatedCount;
     const priceDeduction = INGREDIENT_PRICES[type];
     const oldPrice = this.state.totalPrice;
@@ -80,9 +74,7 @@ class BurgerBuilder extends Component {
   }
 
   render () {
-    const disabledInfo = {
-      ...this.state.ingredients
-    };
+    const disabledInfo = {...this.state.ingredients};
     for (let key in disabledInfo) {
       disabledInfo[key] = disabledInfo[key] <=0;
     };
